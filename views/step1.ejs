@@ -8,9 +8,6 @@
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-        
         <!-- Latest compiled and minified JavaScript -->
         <link rel="stylesheet" href="/css/app.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -18,13 +15,12 @@
     </head>
     <body>
 	<div class="container">
+    <div class="page-header">
+        <h1>Wedding Overview</h1>
+    </div>
         <div class="row">
-            <div class="col-xs-12">
-                <legend>Wedding Date</legend>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-3">
+            <div class="form-group col-xs-4">
+                <label for="date">Wedding Date</label>
                 <input class="form-control" type="text" name="date" placeholder="MM/DD/YYYY">
             </div> 
         </div>
@@ -105,7 +101,12 @@
         </div>
         <div class="form-group">
             <label for="name">How did you hear about me?</label>
-            <textarea class="form-control" name="" id="" cols="10" rows="5"></textarea>
+            <textarea class="form-control" name="" id="" cols="10" rows="2"></textarea>
+        </div>
+        <div class="row">
+            <div class="col-xs-4 col-xs-offset-8">
+                <a href="/step2" class="btn btn-lg btn-block btn-primary">Continue</a>
+            </div>
         </div>
     </div>
     </body>

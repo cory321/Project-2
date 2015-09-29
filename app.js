@@ -10,6 +10,14 @@ app.get("/", function(req,res){
 	res.render("step1");
 });
 
+app.get("/step2", function(req,res){
+	res.render("step2");
+});
+
+app.get("/step3", function(req,res){
+	res.render("step3");
+});
+
 app.listen(3000, function(req,res){
 	console.log("listening on 3000");
 });
