@@ -32,9 +32,9 @@ legend {
 	padding-bottom: 20px;
 }
 
-.main p {
+p, label {
 	color: #777777;
-	font-size: 18px;
+	font-size: 1.2em;
     line-height: 1.6em;
     letter-spacing: 0px;
     font-weight: 400;
@@ -42,8 +42,16 @@ legend {
     margin: 24px 0;
 }
 
+label {
+    margin: 0;
+}
+
 p.status-padding {
 	padding: 15px;
+}
+
+.smallpadding {
+	padding-right: 10px;
 }
 
 .navbar-brand {
