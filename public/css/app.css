@@ -6,7 +6,6 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	padding-top: 50px;
 }
-
 h1, h2, h3, h4, h5, h6, legend {
 	font-family: 'Bitter', serif;
 /*	font-family: 'Bree Serif', serif;
@@ -16,6 +15,31 @@ h1, h2, h3, h4, h5, h6, legend {
 legend {
 	color:#937E67;
 	border-color: #EEE;
+}
+
+.main {
+	margin-top: 20px;
+}
+
+.main h1 {
+	margin-top: 5px;
+}
+
+.main small {
+	display: block;
+	line-height: 1.3em;
+	font-family: 'Open Sans', sans-serif;
+	padding-bottom: 20px;
+}
+
+.main p {
+	color: #777777;
+	font-size: 18px;
+    line-height: 1.6em;
+    letter-spacing: 0px;
+    font-weight: 400;
+    font-style: normal;
+    margin: 24px 0;
 }
 
 p.status-padding {
