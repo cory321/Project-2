@@ -50,6 +50,10 @@ p.status-padding {
 	padding: 15px;
 }
 
+.reduce-margins {
+	margin-top: -20px;
+}
+
 .smallpadding {
 	padding-right: 10px;
 }
