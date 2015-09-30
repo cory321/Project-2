@@ -1,11 +1,13 @@
 var express = require("express");
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
+	stripe = require("stripe")("sk_test_3NxSejZObkd1VsaX3NCrCZ64"),
 	app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride('_method'));
 
 //**** PUBLIC VIEWS ****//
 
@@ -41,6 +43,30 @@ app.get("/contact-us", function(req,res){
 	res.render("contact");
 });
 
+app.get("/stripe", function(req,res){
+	res.render("stripe");
+});
+
+app.post("/stripe", function(req,res) {
+	
+	var stripeToken = req.body.stripeToken;
+	var price = 2000;
+	var priceReadable = "$" + ((price/100).toFixed(2)).toString();
+
+	var charge = stripe.charges.create({
+	  amount: price, // amount in cents, again
+	  currency: "usd",
+	  source: stripeToken,
+	  description: "Example charge"
+	}, function(err, charge) {
+	  if (err || err && err.type === 'StripeCardError') {
+	    // The card has been declined
+	    res.render("declined", {error: err.message});
+	  } else {
+	  	res.render("success", {amount: priceReadable});
+	  }
+	});
+});
 
 //**** ADMIN DASHBOARD ****//
 

@@ -18,8 +18,8 @@ legend {
 	border-color: #EEE;
 }
 
-p {
-	padding-bottom: 10px;
+p.status-padding {
+	padding: 15px;
 }
 
 .navbar-brand {

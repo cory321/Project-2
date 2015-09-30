@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title></title>
+        <title>Surreal Wedding Films - Admin Dashboard</title>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -31,7 +31,7 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
             <li><a href="/san-luis-obispo-wedding-videography">Films</a></li>
             <li><a href="/about-cory-williams">About</a></li>
             <li><a href="/contact-us">Book Us</a></li>
@@ -39,9 +39,12 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
+
     <div class="container">
-        <div class="page-header"><h1>Lock in the Date</h1></div>
-        <a href="/stripe">PAY ONLINE</a>
+        <div class="page-header">
+            <h1>Success!</h1>
+        </div>
+        <p class="bg-success status-padding">You have successfully made a payment in the amount of <strong><%= amount %></strong> to Surreal Wedding Films.</p>
     </div>
     </body>
 </html>
