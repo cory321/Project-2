@@ -45,9 +45,8 @@
         <h1>Wedding Overview</h1>
     </div>
         <div class="row">
-            <div class="form-group col-xs-4">
-                <label for="date">Wedding Date</label>
-                <input class="form-control" type="text" name="date" placeholder="MM/DD/YYYY">
+            <div class="form-group col-xs-4 emphasizeDate">
+                Wedding Date: <strong><%= weddingDate %></strong>
             </div> 
         </div>
 
@@ -59,21 +58,21 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="name">First Name</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control" type="text" name="groomsFirstName" value="<%= groomsFirstName %>">
             </div>
             <div class="form-group col-xs-4">
                 <label for="name">Last Name</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control" type="text" name="groomsLastName" value="<%= groomsLastName %>">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="name">Groom's Email Address</label>
-                <input class="form-control" type="email" name="name">
+                <input class="form-control" type="email" name="groomsEmail" value="<%= groomsEmail %>">
             </div>
             <div class="form-group col-xs-4">
                 <label for="name">Groom's Phone Number</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control" type="text" name="groomsPhone">
             </div>
         </div>
          
@@ -85,21 +84,21 @@
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="name">First Name</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control" type="text" name="bridesFirstName" value="<%= bridesFirstName %>">
             </div>
             <div class="form-group col-xs-4">
                 <label for="name">Last Name</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control" type="text" name="bridesLastName" value="<%= bridesLastName %>">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-4">
                 <label for="name">Bride's Email Address</label>
-                <input class="form-control" type="email" name="name">
+                <input class="form-control" type="email" name="bridesEmail" value="<%= bridesEmail %>">
             </div>
             <div class="form-group col-xs-4">
                 <label for="name">Bride's Phone Number</label>
-                <input class="form-control" type="text" name="name">
+                <input class="form-control" type="text" name="bridesPhone">
             </div>
         </div>
 
@@ -111,23 +110,23 @@
         </div>
         <div class="form-group">
             <label for="name">Getting Ready Location</label>
-            <input class="form-control" type="text" name="name">         
+            <input class="form-control" type="text" name="gettingReadyLocation">         
         </div>
         <div class="form-group">
             <label for="name">Reception Location</label>
-            <input class="form-control" type="text" name="name">         
+            <input class="form-control" type="text" name="receptionLocation">         
         </div>
         <div class="form-group">
             <label for="name">Photographer's Name</label>
-            <input class="form-control" type="text" name="name">         
+            <input class="form-control" type="text" name="photographersName">         
         </div>
         <div class="form-group">
             <label for="name">Wedding Coordinator's Name</label>
-            <input class="form-control" type="text" name="name">         
+            <input class="form-control" type="text" name="plannersName">         
         </div>
         <div class="form-group">
             <label for="name">How did you hear about me?</label>
-            <textarea class="form-control" name="" id="" cols="10" rows="2"></textarea>
+            <textarea class="form-control" name="referralNotes" id="referralNotes" cols="10" rows="2"></textarea>
         </div>
         <div class="row">
             <div class="col-xs-4 col-xs-offset-8">

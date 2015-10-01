@@ -41,12 +41,12 @@
     </nav>
 	<div class="container">
 		<div class="page-header">
-			<h2>Great News, &lt;name&gt;!</h2>
+			<h2>Great News, <%= firstName %>!</h2>
 		</div>
 		<div class="row reduce-margins">
 			<div class="col-md-12">
 				<p>
-					We are still available on your wedding date: <strong>&lt;Wedding Date&gt;</strong>
+					We are still available on your wedding date: <strong><%= weddingDate %></strong>
 				</p>
 				<p>We would love to learn more about you and your wedding day. We are a team of artists who desire to produce for you a timeless and artistic wedding movie you will cherish for decades.
 				</p>
@@ -72,7 +72,7 @@
 		        		<li>1 DVD</li>
 		        	</ul>
 		        </p>
-		        <p><a href="/step2" class="btn btn-primary" role="button">Select Package</a></p>
+		        <p><a href="/step2?package=1" class="btn btn-primary" role="button">Select Package</a></p>
 		      </div>
 		    </div>
 		  </div>
@@ -93,7 +93,7 @@
 		        		<li>1 DVD</li>
 		        	</ul>
 		        </p>
-		        <p><a href="/step2" class="btn btn-primary" role="button">Select Package</a></p>
+		        <p><a href="/step2?package=2" class="btn btn-primary" role="button">Select Package</a></p>
 		      </div>
 		    </div>
 		  </div>
@@ -115,7 +115,7 @@
 		        		<li>All Raw Coverage</li>
 		        	</ul>
 		        </p>
-		        <p><a href="/step2" class="btn btn-primary" role="button">Select Package</a></p>
+		        <p><a href="/step2?package=3" class="btn btn-primary" role="button">Select Package</a></p>
 		      </div>
 		    </div>
 		  </div>

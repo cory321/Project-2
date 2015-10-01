@@ -1,6 +1,7 @@
 var express = require("express");
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
+	session = require("cookie-session"),
 	stripe = require("stripe")("sk_test_3NxSejZObkd1VsaX3NCrCZ64"),
 	app = express();
 
@@ -9,6 +10,12 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 
+app.use(session({
+  maxAge: 3600000,
+  secret: 'secret-token',
+  name: "bookingForm"
+}));
+
 //**** PUBLIC VIEWS ****//
 
 app.get("/", function(req,res){
@@ -16,11 +23,90 @@ app.get("/", function(req,res){
 });
 
 app.get("/step1", function(req,res){
-	res.render("step1");
+	if(req.session.form0) {
+		res.render("step1", req.session.form0);
+	} else {
+		res.redirect("/contact-us");
+	}
+});
+
+app.get("/reset", function(req,res){
+	req.session.form0 = null;
+	res.redirect("/");
+});
+
+app.post("/step1", function(req,res){
+		req.session.form0 = req.body;
+		res.render("step1", req.session.form0);
 });
 
 app.get("/step2", function(req,res){
-	res.render("step2");
+	//if there are any query params
+	if(req.query){
+		var selectedPackage = req.query.package;
+		req.session.selectedPackage = selectedPackage;
+	}
+
+	//if there is a session
+	if(req.session.form0) {
+
+	var person = req.session.form0.person;
+
+		//Autofill the Wedding Overview with what we already know from Contact Form
+		switch(person) {
+			case "groom":
+			var step2params = {
+				weddingDate : req.session.form0.weddingDate,
+				groomsFirstName : req.session.form0.firstName,
+				groomsLastName : req.session.form0.lastName,
+				groomsEmail : req.session.form0.email,
+				bridesFirstName : "",
+				bridesLastName : "",
+				bridesEmail : ""
+			};
+			break;
+
+			case "bride":
+			var step2params = {
+				weddingDate : req.session.form0.weddingDate,
+				groomsFirstName : "",
+				groomsLastName : "",
+				groomsEmail : "",
+				bridesFirstName : req.session.form0.firstName,
+				bridesLastName : req.session.form0.lastName,
+				bridesEmail : req.session.form0.email
+			};
+			break;
+
+			case "else":
+			 var step2params = {
+				weddingDate : req.session.form0.weddingDate,
+				groomsFirstName : "",
+				groomsLastName : "",
+				groomsEmail : "",
+				bridesFirstName : "",
+				bridesLastName : "",
+				bridesEmail : ""
+			};
+			break;
+
+			default:
+			var step2params = {
+			 	weddingDate : req.session.form0.weddingDate,
+				groomsFirstName : "",
+				groomsLastName : "",
+				groomsEmail : "",
+				bridesFirstName : "",
+				bridesLastName : "",
+				bridesEmail : ""
+			};
+			break;
+		}
+
+		res.render("step2", step2params);
+	} else {
+		res.redirect("/contact-us");
+	}
 });
 
 app.get("/step3", function(req,res){
