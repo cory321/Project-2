@@ -10,6 +10,7 @@ var express = require("express");
 	app = express();
 
 app.set("view engine", "ejs");
+app.set('port', (process.env.PORT || 3000));
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
@@ -251,6 +252,6 @@ app.get("*", function(req,res){
 	res.redirect("/");
 });
 
-app.listen(3000, function(req,res){
-	console.log("listening on 3000");
+app.listen(app.get('port'), function() {
+  console.log('Node app is running on port', app.get('port'));
 });
