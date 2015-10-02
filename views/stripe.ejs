@@ -31,10 +31,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/san-luis-obispo-wedding-videography">Films</a></li>
             <li><a href="/about-cory-williams">About</a></li>
-            <li><a href="/contact-us">Book Us</a></li>
+            <li class="active"><a href="/contact-us">Book Us<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -42,19 +42,48 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Process Payment</h1>
+            <h1>Lock in the Date</h1>
         </div>
-        <form action="/stripe" method="POST">
-          <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_42cKjCleNAPp2WYZK6kjaCse"
-            data-amount="2000"
-            data-name="Lock in the Date"
-            data-description="Surreal Wedding Films"
-            data-image="images/lock.png"
-            data-locale="auto">
-          </script>
-        </form>
+        <div class="col-md-12">
+            <p>A non-refundable retainer of <strong>$800</strong> is required to reserve the date.
+The retainer will be applied to the total cost of the chosen services. The remaining balance is due by the
+wedding date. If the contract is canceled at any time before the wedding date, any retainer paid to the
+cinematographer will not be refunded. </p>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Pay Deposit Online</strong></div>
+                <div class="panel-body">
+                  Pay the booking deposit online and secure your wedding date! <br><br>
+                  <form action="/stripe" method="POST">
+                    <script
+                      src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="pk_test_42cKjCleNAPp2WYZK6kjaCse"
+                      data-amount="80000"
+                      data-name="Lock in the Date"
+                      data-description="Surreal Wedding Films"
+                      data-image="images/lock.png"
+                      data-locale="auto">
+                    </script>
+                  </form> 
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><strong>Send Deposit in the Mail</strong></div>
+                <div class="panel-body">
+                        <address>
+                          <strong>Surreal Wedding Films</strong><br>
+                          PO BOX 1008<br>
+                          San Luis Obispo, CA 93406<br>
+                        </address>Please make checks payable to <i>Surreal Wedding Films</i>. 
+                        <br>Please <a href="mailto:cory@surrealweddingfilms.com">contact us</a> if you have any questions
+                </div>
+            </div>
+        </div>
+
+        
     </div>
     </body>
 </html>

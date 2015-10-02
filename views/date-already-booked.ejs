@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Surreal Wedding Films - Admin Dashboard</title>
+        <title></title>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -31,10 +31,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="/san-luis-obispo-wedding-videography">Films</a></li>
             <li><a href="/about-cory-williams">About</a></li>
-            <li><a href="/contact-us">Book Us</a></li>
+            <li class="active"><a href="/contact-us">Book Us<span class="sr-only">(current)</span></a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -42,10 +42,13 @@
 
     <div class="container">
         <div class="page-header">
-            <h1>Success!</h1>
+            <h1>Unfortunate News</h1>
         </div>
-        <p class="bg-success status-padding">You have successfully made a payment in the amount of <strong><%= amount %></strong> to Surreal Wedding Films.</p>
-        <p>Congratulations! You have successfully booked Surreal Wedding Films as your wedding cinematographer. We will be in contact with you shortly regarding further details about you day.</p>
+        <p>Dear <%= firstName %> <%= lastName %>, we regret to inform you that we already have a couple who booked us on the date of <strong><%= weddingDate %></strong></p>
+        <p>Here are some other excellent Wedding Cinematographers we recommend:</p>
+        <ul>
+            <li><a href="http://www.joelvanz.com">Joel Vanz</a></li>
+        </ul>
     </div>
     </body>
 </html>

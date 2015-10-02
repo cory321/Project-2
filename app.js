@@ -1,6 +1,8 @@
 var express = require("express");
+	mongoose = require("mongoose"),
 	bodyParser = require("body-parser"),
 	methodOverride = require("method-override"),
+	db = require("./models"),
 	session = require("cookie-session"),
 	stripe = require("stripe")("sk_test_3NxSejZObkd1VsaX3NCrCZ64"),
 	app = express();
@@ -37,7 +39,25 @@ app.get("/reset", function(req,res){
 
 app.post("/step1", function(req,res){
 		req.session.form0 = req.body;
-		res.render("step1", req.session.form0);
+		var monthNames = ["January", "February", "March", "April", "May", "June",
+		  "July", "August", "September", "October", "November", "December"
+		];
+		var weddingISODate = new Date(req.body.weddingDate);
+		var weddingUTCDate = monthNames[weddingISODate.getMonth()] + " " + weddingISODate.getDate() + ", " + weddingISODate.getFullYear();
+
+		req.session.form0.weddingDate = weddingUTCDate;
+
+		db.Couple.find({weddingDate: weddingISODate.toISOString()}, function(err, couple){
+			if(err) {
+				console.log(err);
+			} else if(!couple.length) {
+				res.render("step1", req.session.form0);
+			} else {
+				res.render("date-already-booked", req.session.form0);
+				console.log(couple);
+			}
+			
+		});
 });
 
 app.get("/step2", function(req,res){
@@ -48,7 +68,7 @@ app.get("/step2", function(req,res){
 	}
 
 	//if there is a session
-	if(req.session.form0) {
+	// if(req.session.form0) {
 
 	var person = req.session.form0.person;
 
@@ -57,6 +77,7 @@ app.get("/step2", function(req,res){
 			case "groom":
 			var step2params = {
 				weddingDate : req.session.form0.weddingDate,
+				packageType : req.session.selectedPackage,
 				groomsFirstName : req.session.form0.firstName,
 				groomsLastName : req.session.form0.lastName,
 				groomsEmail : req.session.form0.email,
@@ -69,6 +90,7 @@ app.get("/step2", function(req,res){
 			case "bride":
 			var step2params = {
 				weddingDate : req.session.form0.weddingDate,
+				packageType : req.session.selectedPackage,
 				groomsFirstName : "",
 				groomsLastName : "",
 				groomsEmail : "",
@@ -81,6 +103,7 @@ app.get("/step2", function(req,res){
 			case "else":
 			 var step2params = {
 				weddingDate : req.session.form0.weddingDate,
+				packageType : req.session.selectedPackage,
 				groomsFirstName : "",
 				groomsLastName : "",
 				groomsEmail : "",
@@ -104,13 +127,28 @@ app.get("/step2", function(req,res){
 		}
 
 		res.render("step2", step2params);
+	// } else {
+	// 	res.redirect("/contact-us");
+	// }
+});
+
+app.get("/step3", function(req,res){
+	if(req.session.form0) {
+		res.render("step3");
 	} else {
 		res.redirect("/contact-us");
 	}
 });
 
-app.get("/step3", function(req,res){
-	res.render("step3");
+app.post("/step3", function(req,res){
+	db.Couple.create(req.body.newCouple, function(err, post){
+		if(err) {
+			console.log(err);
+		} else {
+			console.log(req.body.newCouple);
+			res.render("step3");
+		}
+	});
 });
 
 app.get("/step4", function(req,res){
@@ -136,7 +174,7 @@ app.get("/stripe", function(req,res){
 app.post("/stripe", function(req,res) {
 	
 	var stripeToken = req.body.stripeToken;
-	var price = 2000;
+	var price = 80000;
 	var priceReadable = "$" + ((price/100).toFixed(2)).toString();
 
 	var charge = stripe.charges.create({
