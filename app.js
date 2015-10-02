@@ -5,12 +5,15 @@ var express = require("express");
 	db = require("./models"),
 	session = require("cookie-session"),
 	stripe = require("stripe")("sk_test_3NxSejZObkd1VsaX3NCrCZ64"),
+    loginMiddleware = require("./middleware/loginHelper"),
+    routeMiddleware = require("./middleware/routeHelper"),
 	app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
+app.use(loginMiddleware);
 
 app.use(session({
   maxAge: 3600000,
@@ -194,11 +197,47 @@ app.post("/stripe", function(req,res) {
 
 //**** ADMIN DASHBOARD ****//
 
-app.get("/admin", function(req,res){
+app.get("/admin", routeMiddleware.ensureLoggedIn, function(req,res){
 	res.render("admin/index");
 });
 
+app.get('/admin/signup', routeMiddleware.preventLoginSignup, function(req,res){
+  res.render('admin/signup');
+});
 
+app.post("/admin/signup", function (req, res) {
+  var newUser = req.body.user;
+  db.User.create(newUser, function (err, user) {
+    if (user) {
+      req.login(user);
+      res.redirect("/");
+    } else {
+      console.log(err);
+      res.render("admin/signup");
+    }
+  });
+});
+
+app.get("/admin/login", routeMiddleware.preventLoginSignup, function (req, res) {
+	res.render("admin/login");
+});
+
+app.post("/admin/login", function (req, res) {
+  db.User.authenticate(req.body.user,
+  function (err, user) {
+    if (!err && user !== null) {
+      req.login(user);
+      res.redirect("/admin");
+    } else {
+      res.render("admin/index");
+    }
+  });
+});
+
+app.get("/logout", function(req,res){
+	req.logout();
+	res.redirect("/");
+});
 
 //**** 404 Catch All ****//
 app.get("*", function(req,res){

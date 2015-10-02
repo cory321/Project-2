@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Surreal Wedding Films - Admin Dashboard</title>
+        <title></title>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
         <!-- Latest compiled and minified CSS -->
@@ -31,22 +31,35 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
-            <li><a href="/san-luis-obispo-wedding-videography">Films</a></li>
+            <li><a href="/">Home</a></li>
+            <li class="active"><a href="/san-luis-obispo-wedding-videography">Films <span class="sr-only">(current)</span></a></li>
             <li><a href="/about-cory-williams">About</a></li>
             <li><a href="/contact-us">Book Us</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/logout">Logout</a></li>
-           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
 
     <div class="container">
         <div class="page-header">
-            <h1>Admin Dashboard</h1>
+            <h1>Signup</h1>
+        </div>
+        <div class="col-md-4">
+            <form method="POST" action="/admin/signup" >
+              <div class="form-group">
+                <label for="user">Email:</label>
+                <input type="text" id="email" name="user[email]" class="form-control" autofocus>
+              </div>
+              <div class="form-group">
+                <label> Password: </label>
+                <input type="password" id="pass" name="user[password]" class="form-control">
+              </div>
+              <div class="form-group">
+                <input type="submit" value="Sign up" class="btn btn-primary">
+              </div>
+            </form>
         </div>
     </div>
     </body>
 </html>
+
