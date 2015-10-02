@@ -209,22 +209,22 @@ app.get("/admin", routeMiddleware.ensureLoggedIn, function(req,res){
 });
 
 app.get('/admin/signup', routeMiddleware.preventLoginSignup, function(req,res){
-
-  res.render('admin/signup');
+  res.redirect("/");
+  // res.render('admin/signup');
 });
 
-app.post("/admin/signup", function (req, res) {
-  var newUser = req.body.user;
-  db.User.create(newUser, function (err, user) {
-    if (user) {
-      req.login(user);
-      res.redirect("/");
-    } else {
-      console.log(err);
-      res.render("admin/signup");
-    }
-  });
-});
+// app.post("/admin/signup", function (req, res) {
+//   var newUser = req.body.user;
+//   db.User.create(newUser, function (err, user) {
+//     if (user) {
+//       req.login(user);
+//       res.redirect("/");
+//     } else {
+//       console.log(err);
+//       res.render("admin/signup");
+//     }
+//   });
+// });
 
 app.get("/admin/login", routeMiddleware.preventLoginSignup, function (req, res) {
 	res.render("admin/login");
