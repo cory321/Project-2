@@ -198,10 +198,17 @@ app.post("/stripe", function(req,res) {
 //**** ADMIN DASHBOARD ****//
 
 app.get("/admin", routeMiddleware.ensureLoggedIn, function(req,res){
-	res.render("admin/index");
+	db.Couple.find({}, function(err, couple){
+		if(err) {
+			throw err;
+		} else {
+			res.render("admin/index", {couple: couple});
+		}
+	});
 });
 
 app.get('/admin/signup', routeMiddleware.preventLoginSignup, function(req,res){
+
   res.render('admin/signup');
 });
 

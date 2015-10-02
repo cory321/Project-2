@@ -47,6 +47,46 @@
         <div class="page-header">
             <h1>Admin Dashboard</h1>
         </div>
+        <div class="col-md-12">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Wedding Date</th>
+                <th>Groom</th>
+                <th>Groom's Email</th>
+                <th>Groom's Phone</th>
+                <th>Bride</th>
+                <th>Bride's Email</th>
+                <th>Bride's Phone</th>
+                <th>Getting Ready</th>
+                <th>Reception</th>
+                <th>Photographer</th>
+                <th>Planner</th>
+                <th>Referral Notes</th>
+                <th>Package</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% couple.forEach(function(couple){ %>
+              <tr>
+                <td><%= couple.weddingDate %></td>
+                <td><%= couple.groomsFirstName %> <%= couple.groomsLastName %> </td>
+                <td><%= couple.groomsEmail %></td>
+                <td><%= couple.groomsPhone %></td>
+                <td><%= couple.bridesFirstName %> <%= couple.bridesLastName %></td>
+                <td><%= couple.bridesEmail %></td>
+                <td><%= couple.bridesPhone %></td>
+                <td><%= couple.gettingReadyLocation %></td>
+                <td><%= couple.receptionLocation %></td>
+                <td><%= couple.photographersName %></td>
+                <td><%= couple.plannersName %></td>
+                <td><%= couple.referralNotes %></td>
+                <td><%= couple.packageType %></td>
+              </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
     </div>
     </body>
 </html>
