@@ -3,15 +3,9 @@
     <head>
         <meta charset="utf-8">
         <title></title>
-        
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        
-        <!-- Latest compiled and minified JavaScript -->
         <link rel="stylesheet" href="/css/app.css">
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-        <script src="/scripts/main.js"></script>
+        <link rel="stylesheet" href="/css/sig_app.css">
     </head>
     <body>
 
@@ -43,9 +37,6 @@
 		<div class="page-header">
 			<h1>Wedding Contract</h1>
 		</div>
-
-   
-
 		<legend>Final payment</legend>
 		<p>A non-refundable retainer of <strong>$800</strong> is required to reserve the date.
 The retainer will be applied to the total cost of the chosen services. The remaining balance is due by the
@@ -73,13 +64,25 @@ The final wedding film will be finished and received within approximately 12 wee
 handling, repeated play, and exposure to heat and sunlight. Thus, the client releases the cinematographer from
 any liability for any claims whatsoever based upon defects of the Blu-Ray and DVD discs due to such
 circumstances.</p>
-<div class="checkbox">
-    <label>
-      <input type="checkbox"> I agree
-    </label>
-  </div>
-  <a href="/stripe" class="btn btn-primary">Continue</a>
+ <div id="signature-pad" class="m-signature-pad">
+         <div class="m-signature-pad--body">
+         <div class="description">Please Sign Your Signature in the Box Below</div>
+           <canvas width="800" height="200"></canvas>
+         </div>
+         <div class="m-signature-pad--footer">
+           <button class="btn btn-warning" data-action="clear">Clear Signature</button>
+           <button class="btn btn-success" data-action="save">Save Signature</button>
+           <a href="/stripe" class="btn btn-primary">Continue</a>
+         </div>
+       </div>
+     </div>
 	</div>
-	
+     <script src="/scripts/signature_pad.min.js"></script>
+     <script src="/scripts/sig_app.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->        
+        <!-- Latest compiled and minified JavaScript -->
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </body>
 </html>
